@@ -224,10 +224,10 @@ file_handling:
 open_file:
     clc
     mov ah,3dh
-    mov al,0 ;tryby funkcji: 0-otworz,1-pisz,2-to i to
+    mov al,0
     mov dx, offset filename
     int 21h
-    mov handle,ax ;funkcja zapisuje uchwyt do pliku w ax
+    mov handle,ax
     jc open_file_error
     ret
 
@@ -238,11 +238,11 @@ open_file_error:
 
 read_from_file:
     mov ah,3fh
-    mov cx,sound_size ;liczba bajtow do przeczytania
+    mov cx,sound_size 
     mov bx,ds:[handle]
     mov dx,offset sound_data
-    mov bx,handle ;numer dojscia
-    int 21h  ;przerwanie sluzy do wywolywania funkcji systemowych
+    mov bx,handle 
+    int 21h
     ret
     
 insert_0:
@@ -265,8 +265,6 @@ clear_arr:
     loop czysc
     ret
     
-    
-
 ;//////////////////////////////////////////////////////////////// 
 
 end:
@@ -286,11 +284,7 @@ data              segment
 
     sound_size dw 10000
 
-    ;sound_data db 0,32,64,128,192,255 ;8-bit sound (0-255)
-
     sound_index dw 0
-
-    ;filename db 'mario.txt',0
 
     handle dw 0
 
